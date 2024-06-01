@@ -5,6 +5,89 @@
   text-align: center;
 }
 
+.ListBurger {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 450px;
+  width:  800px;
+  gap: 40px;
+  margin-left: 230px;
+}
+
+.IngredientList {
+  flex-basis: 800px;
+  border: 2px solid #ccc;
+  padding: 20px;
+  border-radius: 20px;
+  height: 300px;
+}
+
+.Buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #ccc;
+}
+
+.Buttons:last-child {
+  border-bottom: none;
+}
+
+.Button {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+}
+
+.Button:hover {
+  color: #d32f2f;
+}
+
+.DeleteButtonDiv {
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+.DeleteButtonDiv:hover {
+  color: #d32f2f;
+}
+
+.DeleteButton {
+  color: black;
+  border: none;
+  padding: 10px 10px 0 10px;
+  cursor: pointer;
+  font-size: 25px;
+  background-color: white;
+  border-bottom: 1px solid white;
+}
+
+.DeleteButtonText {
+  font-size: 14px;
+}
+
+.ButtonImg {
+  width: 60px;
+  height: auto;
+  border-radius: 20px;
+}
+
+.Quantity {
+  font-size: 20px;
+}
+
+.Price {
+  font-size: 30px;
+}
+
 .BreadBottom {
   height: 13%;
   width: 80%;

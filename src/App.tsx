@@ -1,5 +1,7 @@
 import './App.css';
 import React, {useState} from 'react';
+import Burger from './components/Burger';
+import IngredientList from './components/IngredientList';
 import PriceCalculator from './components/PriceCalculator';
 import {IngredientState, Ingredient} from './types';
 import meatImage from './assets/meet.png';
@@ -15,7 +17,7 @@ const INGREDIENTS: Ingredient[] = [
 ];
 
 const App: React.FC = () => {
-  const [ingredient] =
+  const [ingredient, setIngredient] =
     useState<IngredientState[]>([
       {name: 'Meat', count: 0},
       {name: 'Cheese', count: 0},
@@ -23,9 +25,43 @@ const App: React.FC = () => {
       {name: 'Bacon', count: 0},
     ]);
 
+  const addIngredient = (ingredientName: string) => {
+    setIngredient((prevIngredients) => {
+      const existingIngredient = prevIngredients.find(piece =>
+        piece.name === ingredientName);
+      const ingredientDetails = INGREDIENTS.find(piece =>
+        piece.name === ingredientName);
+      if (existingIngredient && ingredientDetails) {
+        return prevIngredients.map(piece =>
+          piece.name === ingredientName ? {...piece, count: piece.count + 1} : piece
+        );
+      } else if (ingredientDetails) {
+        return [...prevIngredients, {name: ingredientName, count: 1}];
+      }
+      return prevIngredients;
+    });
+  };
+
+  const removeIngredient = (ingredientName: string) => {
+    setIngredient((prevIngredients) => {
+      return prevIngredients.map(piece =>
+        piece.name === ingredientName ? {...piece, count: piece.count > 0 ? piece.count - 1 : 0} : piece
+      ).filter(piece => piece.count > 0);
+    });
+  };
+
   return (
     <>
       <PriceCalculator ingredients={ingredient} prices={INGREDIENTS} />
+      <div className="ListBurger">
+        <IngredientList
+          ingredients={INGREDIENTS}
+          ingredientStates={ingredient}
+          onAdd={addIngredient}
+          onDelete={removeIngredient}
+        />
+        <Burger ingredients={ingredient} />
+      </div>
     </>
   );
 };
